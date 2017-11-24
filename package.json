@@ -1,0 +1,22 @@
+{
+  "name": "thinbus-srp-tester",
+  "version": "1.0.0",
+  "description": "Tests the thinbus-srp-js module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/testrunner.js; jasmine-node spec",
+    "build": "browserify -r ./srp-client.js:SRP -o srp-client-browserfied.js"
+  },
+  "author": "Simon Massey <massey1905@gmail.com> (https://bitbucket.org/simon_massey/)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "request": "^2.83.0",
+    "thinbus-srp": "^1.6.0",
+    "unit.js": "^2.0.0"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.14.5"
+  }
+}

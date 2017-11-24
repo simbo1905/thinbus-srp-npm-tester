@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <script src="srp-client-browserfied.js"></script>
+    </head>
+    <body>
+        <h1>Thinbus Secure Remote Password Register Demo</h1>
+        <form action="/save" method="post">
+            email <input type="text" name="email" id="email"></input><br/>
+            password <input type="password" name="verifier" id="verifier"></input><br/>
+            <input type="hidden" name="salt" id="salt"></input>
+            <button type="button" onclick="createVerifier(this.parentElement)">Register</button>
+        </form>
+<script>
+function createVerifier(form) {
+    var password = document.getElementById('verifier').value;
+    var email = document.getElementById('email').value;
+
+    var srp = require('SRP').generateSaltAndVerifier(email, password);
+
+    document.getElementById('verifier').value = srp.verifier;
+
+    document.getElementById('salt').value = srp.salt;
+
+    form.submit();
+}
+</script>
+    </body>
+</html>
