@@ -125,3 +125,16 @@ const test = require('unit.js');
 
 // the javascript client defaults to hashing the session key as that is additional protection of the password in case the key is accidentally exposed to an attacker.
 test.assert.equal(clientSessionKey, serverSessionKey);               
+
+// Note that if multiple instances point to the same location,
+// the db will be shared, but only per process.
+var memdown = require('memdown')
+var db = new memdown('test')
+
+db.put('hey', 'you', function (err) {
+  if (err) throw err
+})
+
+db.get('hey', function (err, value){
+    console.log("value is :"+value)
+})

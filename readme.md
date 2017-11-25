@@ -1,2 +1,6 @@
 
-browserify -r ./srp-client.js:SRP -o srp-client-browserfied.js
+# Build
+
+```sh
+npm run-script build
+```

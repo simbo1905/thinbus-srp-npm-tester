@@ -18,24 +18,47 @@ app.get('/', function(req, res){
   res.sendFile('index.html', { root: __dirname } );
 });
 
-app.get('/login.html', function(req, res){
-  res.sendFile('login.html', { root: __dirname } );
-});
-
 app.get('/register.html', function(req, res){
   res.sendFile('register.html', { root: __dirname } );
+});
+
+app.get('/login.html', function(req, res){
+  res.sendFile('login.html', { root: __dirname } );
 });
 
 app.get('/srp-client-browserfied.js', function(req, res){
   res.sendFile('srp-client-browserfied.js', { root: __dirname } );
 });
 
+// memdown is an in memory db that disappears when you restart the process
+var memdown = require('memdown')
+var db = new memdown('srp')
+
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.post('/save', urlencodedParser, function(req, res){
   if (!req.body) return res.sendStatus(400)
-  res.send('welcome, ' + req.body.email + ', salt: ' + req.body.salt + ', verifier: ' + req.body.verifier);
+  
+    db.put(req.body.email, req.body.salt + ':' + req.body.verifier, function (err) {
+        if (err) throw err
+    })
+
+  res.send('Welcome ' + req.body.email + '!. Your salt: ' + req.body.salt + ', your verifier: ' + req.body.verifier);
+});
+
+app.get('/load', function(req, res){
+    const email = req.query.email
+    db.get(email, function(err,value){
+        if(err) {
+            console.log('user not found: in the real world you should leak that fact that a user is or is not a customer a unique and stable set of values for unregistered users.')
+            return res.sendStatus(204) // https://stackoverflow.com/a/11760249/329496
+        } else {
+            res.setHeader('Content-Type', 'application/json');
+            // coerse the object to a string to split it
+            res.send(JSON.stringify((value + '').split(":")));
+        }
+    })
 });
 
 var server = app.listen(3000, function(){
