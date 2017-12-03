@@ -70,8 +70,10 @@ app.get('/load', function(req, res){
             } else {
                 res.setHeader('Content-Type', 'application/json');
                 // coerse the object to a string to split it
-                //console.log(value);
-                res.send(value);
+                const result = JSON.parse(value);
+                delete result.verifier;
+                //console.log(typeof value);
+                res.send(JSON.stringify(result));
             }
         })
     }
