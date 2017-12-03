@@ -34,6 +34,16 @@ app.get('/srp-client-browserfied.js', function(req, res){
 var memdown = require('memdown')
 var db = new memdown('srp')
 
+// var testUser = {
+//     email: 'found@gmail.com',
+//     salt: '1234',
+//     verifier: '5678' 
+// };
+
+// db.put(testUser.email, JSON.stringify(testUser), function (err) {
+//     if (err) throw err
+// })
+
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -49,16 +59,22 @@ app.post('/save', urlencodedParser, function(req, res){
 
 app.get('/load', function(req, res){
     const email = req.query.email
-    db.get(email, function(err,value){
-        if(err) {
-            console.log('user not found: in the real world you should leak that fact that a user is or is not a customer a unique and stable set of values for unregistered users.')
-            return res.sendStatus(204) // https://stackoverflow.com/a/11760249/329496
-        } else {
-            res.setHeader('Content-Type', 'application/json');
-            // coerse the object to a string to split it
-            res.send(JSON.stringify((value + '').split(":")));
-        }
-    })
+
+    if( typeof email === 'undefined') {
+        return res.sendStatus(400);
+    } else {
+        db.get(email, { asBuffer: false }, function(err,value){
+            if(err) {
+                //console.log('user not found:'+email); //in the real world you should leak that fact that a user is or is not a customer a unique and stable set of values for unregistered users.')
+                return res.sendStatus(204) // https://stackoverflow.com/a/11760249/329496
+            } else {
+                res.setHeader('Content-Type', 'application/json');
+                // coerse the object to a string to split it
+                //console.log(value);
+                res.send(value);
+            }
+        })
+    }
 });
 
 var server = app.listen(3000, function(){
