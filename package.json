@@ -4,8 +4,7 @@
   "description": "Tests the thinbus-srp-js module",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine-node spec --forceexit",
-    "build": "browserify -r ./srp-client.js:SRP -o srp-client-browserfied.js"
+    "test": "jasmine-node spec --forceexit"
   },
   "author": "Simon Massey <massey1905@gmail.com> (https://bitbucket.org/simon_massey/)",
   "license": "Apache-2.0",
@@ -14,7 +13,7 @@
     "express": "^4.16.2",
     "memdown": "^1.4.1",
     "request": "^2.83.0",
-    "thinbus-srp": "^1.6.0",
+    "thinbus-srp": "^1.7.2",
     "unit.js": "^2.0.0"
   },
   "devDependencies": {

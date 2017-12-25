@@ -8,18 +8,26 @@
             email <input type="text" name="email" id="email"></input><br/>
             password <input type="password" name="verifier" id="verifier"></input><br/>
             <input type="hidden" name="salt" id="salt"></input>
+            <input type="hidden" name="verifier" id="verifier"></input>
             <button type="button" onclick="createVerifier(this.parentElement)">Register</button>
         </form>
 <script>
 function createVerifier(form) {
     var password = document.getElementById('verifier').value;
+    
     var email = document.getElementById('email').value;
 
-    var srp = require('SRP').generateSaltAndVerifier(email, password);
+    var SRP6JavascriptClientSessionSHA256 =require('SRP6JavascriptClientSessionSHA256');
 
-    document.getElementById('verifier').value = srp.verifier;
+    var srpClient = new SRP6JavascriptClientSessionSHA256();
 
-    document.getElementById('salt').value = srp.salt;
+    var salt = srpClient.generateRandomSalt();
+
+    var verifier = srpClient.generateVerifier(salt, email, password);
+
+    document.getElementById('verifier').value = verifier;
+
+    document.getElementById('salt').value = salt;
 
     form.submit();
 }

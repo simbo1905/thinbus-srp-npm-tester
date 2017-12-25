@@ -27,7 +27,8 @@ app.get('/login.html', function(req, res){
 });
 
 app.get('/srp-client-browserfied.js', function(req, res){
-  res.sendFile('srp-client-browserfied.js', { root: __dirname } );
+  res.set('Content-Type', 'application/javascript');
+  res.sendFile('browser.js', { root: __dirname + "/node_modules/thinbus-srp/" } );
 });
 
 // memdown is an in memory db that disappears when you restart the process
@@ -54,7 +55,7 @@ app.post('/save', urlencodedParser, function(req, res){
         if (err) throw err
     })
 
-  res.send('Welcome ' + req.body.email + '!. Your salt: ' + req.body.salt + ', your verifier: ' + req.body.verifier);
+  res.send('Welcome ' + req.body.email + '!');
 });
 
 app.get('/load', function(req, res){
