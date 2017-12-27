@@ -1,6 +1,6 @@
 {
   "name": "thinbus-srp-tester",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Demo app for the thinbus-srp module",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "express": "^4.16.2",
     "memdown": "^1.4.1",
     "request": "^2.83.0",
-    "thinbus-srp": "^1.7.2",
+    "thinbus-srp": "^1.7.4",
     "unit.js": "^2.0.0"
   },
   "devDependencies": {
