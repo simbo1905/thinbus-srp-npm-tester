@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Demo app for the thinbus-srp module",
   "main": "index.js",
-  "author": "Simon Massey <massey1905@gmail.com> (https://bitbucket.org/simon_massey/)",
+  "author": "Simon Massey <massey1905@gmail.com> (https://github.com/simbo1905/)",
   "license": "Apache-2.0",
   "dependencies": {
     "body-parser": "^1.18.2",
