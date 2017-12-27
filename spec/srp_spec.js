@@ -1,6 +1,6 @@
-var request = require("request");
+var request = require('request');
 const frisby = require('frisby');
-var helloWorld = require("../app.js")
+var helloWorld = require('../app.js');
 var base_url = "http://localhost:3000/"
 const Joi = frisby.Joi; // Frisby exposes Joi for convenience
 

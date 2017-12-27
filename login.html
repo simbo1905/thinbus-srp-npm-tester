@@ -1,6 +1,57 @@
 <html>
-    <head/>
+    <head>
+        <script src="srp-client-browserfied.js"></script>
+    </head>
     <body>
-        <h1>Thinbus Secure Remote Password Login Demo</h1>
+        <h1>Thinbus Secure Remote Password Authentication Demo</h1>
+        <p>
+        You need to <a href="register.html">register using SRP</a> to be able to login. 
+        </p>
+        <form action="/authenticate" method="post">
+            username <input type="text" name="username" id="username"></input><br/>
+            password <input type="password" id="do_no_post"></input><br/>
+            <input type="hidden" name="credentials" id="credentials"></input>
+            <button type="button" onclick="autenticate(this.parentElement)">Login</button>
+        </form>
+<script>
+
+function autenticate(form) {
+    var username = document.getElementById('username').value;
+
+    var password = document.getElementById('do_no_post').value;
+
+    document.getElementById('do_no_post').value = null;
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const response = JSON.parse(this.responseText);
+
+            const salt = response.salt;
+
+            const B = response.B;
+
+            var SRP6JavascriptClientSessionSHA256 =require('SRP6JavascriptClientSessionSHA256');
+
+            var srpClient = new SRP6JavascriptClientSessionSHA256();
+
+            srpClient.step1(username, password);
+
+            var credentials = srpClient.step2(salt, B);
+
+            credentials['username'] = username;
+
+            document.getElementById('credentials').value = JSON.stringify(credentials);
+
+            console.log("shared key: "+srpClient.getSessionKey());
+
+            form.submit();
+        }
+    };
+    xhttp.open("POST", "/challenge", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("username="+username);
+}
+</script>
     </body>
 </html>

@@ -5,7 +5,7 @@
     <body>
         <h1>Thinbus Secure Remote Password Register Demo</h1>
         <form action="/save" method="post">
-            email <input type="text" name="email" id="email"></input><br/>
+            username <input type="text" name="username" id="username"></input><br/>
             password <input type="password" name="verifier" id="verifier"></input><br/>
             <input type="hidden" name="salt" id="salt"></input>
             <input type="hidden" name="verifier" id="verifier"></input>
@@ -15,7 +15,7 @@
 function createVerifier(form) {
     var password = document.getElementById('verifier').value;
     
-    var email = document.getElementById('email').value;
+    var username = document.getElementById('username').value;
 
     var SRP6JavascriptClientSessionSHA256 =require('SRP6JavascriptClientSessionSHA256');
 
@@ -23,7 +23,7 @@ function createVerifier(form) {
 
     var salt = srpClient.generateRandomSalt();
 
-    var verifier = srpClient.generateVerifier(salt, email, password);
+    var verifier = srpClient.generateVerifier(salt, username, password);
 
     document.getElementById('verifier').value = verifier;
 
