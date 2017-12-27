@@ -1,10 +1,4 @@
 
 # Thinbus Javascript Secure Remote Password (SRP) Tester
 
-This repo has integration tests and demo code for Thinbus Javascript Secure Remote Password (SRP). 
-
-## Build
-
-```sh
-npm run-script build
-```
+This repo is a very simple demo app for the Thinbus Javascript Secure Remote Password (SRP) `thinbus-srp`. 
