@@ -27,9 +27,9 @@ app.get('/login.html', function(req, res){
 });
 
 // here we are loading the thinbus client library directly from the local node_mocules cache
-app.get('/srp-client-browserfied.js', function(req, res){
+app.get('/browser.thinbus.js', function(req, res){
   res.set('Content-Type', 'application/javascript');
-  res.sendFile('browser.js', { root: __dirname + "/node_modules/thinbus-srp/" } );
+  res.sendFile('browser.thinbus.js', { root: __dirname } );
 });
 
 // memdown is an in memory db that disappears when you restart the process

@@ -9,6 +9,9 @@
     "type": "git",
     "url": "git+https://github.com/simbo1905/thinbus-srp-npm-tester.git"
   },
+  "scripts": {
+    "prepare": "gulp minify"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
@@ -19,6 +22,9 @@
   },
   "devDependencies": {
     "frisby": "^2.0.10",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
     "jasmine-node": "^1.14.5"
   }
 }
