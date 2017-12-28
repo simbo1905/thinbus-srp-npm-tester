@@ -1,6 +1,6 @@
 {
   "name": "thinbus-srp-tester",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Demo app for the thinbus-srp module",
   "main": "index.js",
   "author": "Simon Massey <massey1905@gmail.com> (https://github.com/simbo1905/)",
@@ -17,7 +17,7 @@
     "express": "^4.16.2",
     "memdown": "^1.4.1",
     "request": "^2.83.0",
-    "thinbus-srp": "^1.7.5",
+    "thinbus-srp": "^1.8.0",
     "unit.js": "^2.0.0"
   },
   "devDependencies": {
