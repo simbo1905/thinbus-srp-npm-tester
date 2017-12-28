@@ -17,14 +17,14 @@
     "express": "^4.16.2",
     "memdown": "^1.4.1",
     "request": "^2.83.0",
-    "thinbus-srp": "^1.8.0",
-    "unit.js": "^2.0.0"
+    "thinbus-srp": "^1.8.0"
   },
   "devDependencies": {
     "frisby": "^2.0.10",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^3.0.0",
-    "jasmine-node": "^1.14.5"
+    "jasmine-node": "^1.14.5",
+    "unit.js": "^2.0.0"
   }
 }
