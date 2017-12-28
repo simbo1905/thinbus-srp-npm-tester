@@ -1,5 +1,6 @@
 <html>
     <head>
+        <!-- NOTE this script is at https://github.com/simbo1905/thinbus-srp-npm/blob/master/browser.js -->
         <script src="srp-client-browserfied.js"></script>
     </head>
     <body>
@@ -17,7 +18,9 @@ function createVerifier(form) {
     
     var username = document.getElementById('username').value;
 
-    var SRP6JavascriptClientSessionSHA256 = require('SRP6JavascriptClientSessionSHA256');
+    // here we are using the "browserify -s thinbus" option that with no "require" method 
+    // being used here in the browser it adds the exported thinbus function onto the window object 
+    var SRP6JavascriptClientSessionSHA256 = window.thinbus;
 
     var srpClient = new SRP6JavascriptClientSessionSHA256();
 

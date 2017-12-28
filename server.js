@@ -26,6 +26,7 @@ app.get('/login.html', function(req, res){
   res.sendFile('login.html', { root: __dirname } );
 });
 
+// here we are loading the thinbus client library directly from the local node_mocules cache
 app.get('/srp-client-browserfied.js', function(req, res){
   res.set('Content-Type', 'application/javascript');
   res.sendFile('browser.js', { root: __dirname + "/node_modules/thinbus-srp/" } );
