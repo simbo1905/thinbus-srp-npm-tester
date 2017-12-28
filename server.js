@@ -181,8 +181,8 @@ app.get('/home', function(req,res){
   res.send('Welcome ' + username + ' you have successfully authenticated!');
 });
 
-var server = app.listen(3000, function(){
-  //console.log('Magic is happening on port 3000');
+var server = app.listen(8080, function(){
+  console.log('Node has started on port 8080');
 });
 
 exports.closeServer = function(){

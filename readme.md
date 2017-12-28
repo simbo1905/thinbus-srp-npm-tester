@@ -16,4 +16,4 @@ To run it:
 npm start
 ```
 
-Then open a browser at http://localhost:3000/
+Then open a browser at http://localhost:8080/
