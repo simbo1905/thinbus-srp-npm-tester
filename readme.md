@@ -13,7 +13,7 @@ cd package
 To run it: 
 
 ```sh
-node app.js
+npm start
 ```
 
 Then open a browser at http://localhost:3000/
