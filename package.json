@@ -13,8 +13,8 @@
     "prepare": "gulp minify"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
     "memdown": "^1.4.1",
     "request": "^2.84.0",
     "thinbus-srp": "^1.8.0"
