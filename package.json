@@ -17,7 +17,7 @@
     "express": "^4.19.2",
     "memdown": "^1.4.1",
     "request": "^2.84.0",
-    "thinbus-srp": "^1.8.0"
+    "thinbus-srp": "^2.0.1"
   },
   "devDependencies": {
     "frisby": "^2.0.10",
