@@ -1,0 +1,52 @@
+name: PR Browser Test
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  browser-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build browser bundle
+        run: npx gulp minify
+
+      - name: Start server in background
+        run: node server.js &
+        env:
+          PORT: 8080
+
+      - name: Wait for server to be ready
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:8080/ && break
+            echo "Waiting for server... ($i)"
+            sleep 1
+          done
+
+      - name: Run headless browser test
+        run: node test-browser.js
+
+      - name: Auto-merge PR on success
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge --auto --squash "${{ github.event.pull_request.number }}"
